@@ -1,6 +1,6 @@
+package leeny.edu.withoutfxml;
+
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -14,6 +14,7 @@ import java.net.MalformedURLException;
 
 // launches the application
 public class Main extends Application {
+
     Player player;
     FileChooser fileChooser;
 
@@ -29,29 +30,23 @@ public class Main extends Application {
 
         // Adding functionality to switch to different videos
         fileChooser = new FileChooser();
-        open.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e) {
-                // Pausing the video while switching
-                player.player.pause();
-                File file = fileChooser.showOpenDialog(primaryStage);
-                // Choosing the file to play
-                if (file != null) {
-                    try {
-                        player = new Player(file.toURI().toURL().toExternalForm());
-                        Scene scene = new Scene(player, 720, 535, Color.BLACK);
-                        primaryStage.setScene(scene);
-                    } catch (MalformedURLException e1) {
-                        e1.printStackTrace();
-                    }
+        open.setOnAction(e -> {
+            // Pausing the video while switching
+            player.getPlayer().pause();
+            File file1 = fileChooser.showOpenDialog(primaryStage);
+            // Choosing the file to play
+            if (file1 != null) {
+                try {
+                    player = new Player(file1.toURI().toURL().toExternalForm());
+                    Scene scene = new Scene(player, 720, 535, Color.BLACK);
+                    primaryStage.setScene(scene);
+                } catch (MalformedURLException e1) {
+                    e1.printStackTrace();
                 }
             }
-
-
         });
         // here you can choose any video
-        player = new
-
-                Player("file:///D:/VIDEO/resident2montage.mp4");
+        player = new Player("file:///C:/videos/f.mp4");
 
         // Setting the menu at the top
         player.setTop(menu);
@@ -66,7 +61,7 @@ public class Main extends Application {
     }
 
 
-    // Main function to launch the application
+    // leeny.edu.withoutfxml.Main function to launch the application
     public static void main(String[] args) {
         launch(args);
     }
