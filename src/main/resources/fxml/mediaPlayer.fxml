@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.media.MediaView?>
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml" prefHeight="150.0" prefWidth="200.0"
+           fx:id="mediaPlayer"
+           fx:controller="leeny.edu.controllers.MediaPlayerController">
+    <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" />
+    <HBox fx:id="controlPanel" alignment="BOTTOM_CENTER" prefHeight="46.0" prefWidth="600.0">
+        <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleOpenVideoAction" pickOnBounds="true" preserveRatio="true">
+            <HBox.margin>
+                <Insets right="5.0" />
+            </HBox.margin>
+            <Image url="@../icons/open_file.png" />
+        </ImageView>
+        <ImageView fx:id="playbackImage" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handlePlaybackVideoAction" pickOnBounds="true" preserveRatio="true">
+            <HBox.margin>
+                <Insets right="5.0" />
+            </HBox.margin>
+            <Image url="@../icons/play.png" />
+        </ImageView>
+        <ImageView fx:id="volumeImage" fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+            <HBox.margin>
+                <Insets bottom="2.0" right="5.0" />
+            </HBox.margin>
+            <Image url="@../icons/volume_on.png" />
+        </ImageView>
+        <Slider fx:id="volumeSlider" prefHeight="14.0" prefWidth="50.0">
+            <HBox.margin>
+                <Insets bottom="5.0" right="20.0" />
+            </HBox.margin>
+        </Slider>
+        <Slider fx:id="timeSlider" prefHeight="14.0" prefWidth="350.0">
+            <HBox.margin>
+                <Insets bottom="5.0" right="20.0" />
+            </HBox.margin>
+        </Slider>
+        <ImageView fx:id="fullScreenImage" fitHeight="30.0" fitWidth="200.0" onMouseClicked="#handleFullScreenAction" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../icons/fullscreen.png" />
+        </ImageView>
+        <opaqueInsets>
+            <Insets />
+        </opaqueInsets>
+        <StackPane.margin>
+            <Insets bottom="5.0" />
+        </StackPane.margin>
+    </HBox>
+</StackPane>
