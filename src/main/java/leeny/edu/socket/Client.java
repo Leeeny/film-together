@@ -1,12 +1,17 @@
 package leeny.edu.socket;
 
+import leeny.edu.json.Parser;
+import leeny.edu.json.ResponseJSON;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Queue;
 import java.util.Scanner;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Client {
     private String hostname;
@@ -16,13 +21,15 @@ public class Client {
     PrintWriter out;
     Scanner sc = new Scanner(System.in);
 
+    private Queue<ResponseJSON> responseQueue;
+
     public Client(String hostname, int port) {
         this.hostname = hostname;
         this.port = port;
+        responseQueue = new ConcurrentLinkedQueue<>();
     }
 
     public void send(String msg) {
-
         out.println(msg);
         out.flush();
     }
@@ -57,15 +64,21 @@ public class Client {
                 public void run() {
                     try {
                         msg = in.readLine();
-                        while (msg != null) {
-                            System.out.println(msg);
+                       // responseQueue.add(Parser.getObjectFromJson(msg));
+                        while (msg!=null) {
                             msg = in.readLine();
+                            responseQueue.add(Parser.getObjectFromJson(msg));
+                            System.out.println(msg);
                         }
-                        System.out.println("Connection is closed");
-                        out.close();
-                        socket.close();
                     } catch (IOException e) {
                         e.printStackTrace();
+                    }
+                    System.out.println("Connection is closed");
+                    out.close();
+                    try {
+                        socket.close();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             });
@@ -90,9 +103,9 @@ public class Client {
 
 
     public static void main(String[] args) {
-        String hostname = "26.70.165.194";
+       /* String hostname = "26.70.165.194";
         int port = 8888;
         Client client = new Client(hostname, port);
-        client.execute();
+        client.execute();*/
     }
 }

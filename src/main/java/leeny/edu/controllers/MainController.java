@@ -8,11 +8,14 @@ public class MainController {
 
     @FXML private MediaPlayerController mediaPlayerController;
 
+    private ClientController clientController;
+
     @FXML private BorderPane mainComponent;
 
     @FXML
     private void initialize() {
         mediaPlayerController.injectMainController(this);
+        clientController = new ClientController(this);
     }
 
     public void testHideComponents() {
