@@ -1,29 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="CENTER"
-          maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-          minHeight="-Infinity" minWidth="-Infinity"
-          prefHeight="600.0" prefWidth="1000.0"
-          xmlns="http://javafx.com/javafx/18"
-          xmlns:fx="http://javafx.com/fxml/1"
-          fx:id="mainGridPane"
-          fx:controller="leeny.edu.controllers.MainController">
-
-    <columnConstraints>
-        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="600.0" prefWidth="600.0" />
-        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="400.0" prefWidth="400.0" />
-    </columnConstraints>
-
-    <rowConstraints>
-        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="400.0" prefHeight="400.0" valignment="CENTER" vgrow="ALWAYS" />
-        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="200.0" prefHeight="200.0" valignment="CENTER" vgrow="ALWAYS" />
-    </rowConstraints>
-
-    <fx:include fx:id="mediaPlayer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" source="mediaPlayer.fxml" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS"/>
-    <fx:include fx:id="chat" prefHeight="600" prefWidth="400" source="chat.fxml" GridPane.columnIndex="1" GridPane.rowSpan="2147483647" />
-    <fx:include fx:id="settings" source="settings.fxml" GridPane.rowIndex="1" />
-</GridPane>
+<HBox fx:id="mainComponent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="leeny.edu.controllers.MainController">
+   <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+      <fx:include fx:id="mediaPlayer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" source="mediaPlayer.fxml" VBox.vgrow="ALWAYS" />
+      <fx:include fx:id="settings" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" source="settings.fxml" />
+   </VBox>
+   <fx:include fx:id="chat" source="chat.fxml" />
+</HBox>

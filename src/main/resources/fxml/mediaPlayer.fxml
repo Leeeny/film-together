@@ -9,48 +9,53 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.media.MediaView?>
 
-<StackPane fx:id="mediaPlayer" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="leeny.edu.controllers.MediaPlayerController">
-    <MediaView fx:id="mediaView" fitHeight="400.0" fitWidth="600.0" nodeOrientation="INHERIT" StackPane.alignment="CENTER">
+<StackPane fx:id="mainComponent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+           prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="leeny.edu.controllers.MediaPlayerController">
+   <MediaView fx:id="mediaView" fitHeight="400.0" fitWidth="600.0" nodeOrientation="INHERIT"
+              StackPane.alignment="CENTER">
       <viewport>
-         <Rectangle2D />
-      </viewport></MediaView>
-    <HBox fx:id="controlPanel" alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="600.0">
-        <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleOpenVideoAction" pickOnBounds="true" preserveRatio="true">
-            <HBox.margin>
-                <Insets right="5.0" />
-            </HBox.margin>
-            <Image url="@../icons/open_file.png" />
-        </ImageView>
-        <ImageView fx:id="playbackImage" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handlePlaybackVideoAction" pickOnBounds="true" preserveRatio="true">
-            <HBox.margin>
-                <Insets right="5.0" />
-            </HBox.margin>
-            <Image url="@../icons/play.png" />
-        </ImageView>
-        <ImageView fx:id="volumeImage" fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-            <HBox.margin>
-                <Insets bottom="2.0" right="5.0" />
-            </HBox.margin>
-            <Image url="@../icons/volume_on.png" />
-        </ImageView>
-        <Slider fx:id="volumeSlider" prefHeight="14.0" prefWidth="50.0">
-            <HBox.margin>
-                <Insets bottom="5.0" right="20.0" />
-            </HBox.margin>
-        </Slider>
-        <Slider fx:id="timeSlider" prefHeight="14.0" prefWidth="350.0">
-            <HBox.margin>
-                <Insets bottom="5.0" right="20.0" />
-            </HBox.margin>
-        </Slider>
-        <ImageView fx:id="fullScreenImage" fitHeight="30.0" fitWidth="200.0" onMouseClicked="#handleFullScreenAction" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../icons/fullscreen.png" />
-        </ImageView>
-        <opaqueInsets>
-            <Insets />
-        </opaqueInsets>
-        <StackPane.margin>
-            <Insets bottom="5.0" />
-        </StackPane.margin>
-    </HBox>
+         <Rectangle2D/>
+      </viewport>
+   </MediaView>
+   <HBox fx:id="controlPanel" alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308"
+         maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" StackPane.alignment="BOTTOM_CENTER">
+      <opaqueInsets>
+         <Insets/>
+      </opaqueInsets>
+      <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleOpenVideoAction" pickOnBounds="true"
+                 preserveRatio="true">
+         <HBox.margin>
+            <Insets right="5.0"/>
+         </HBox.margin>
+         <Image url="@../icons/open_file.png"/>
+      </ImageView>
+      <ImageView fx:id="playbackImage" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handlePlaybackVideoAction"
+                 pickOnBounds="true" preserveRatio="true">
+         <HBox.margin>
+            <Insets right="5.0"/>
+         </HBox.margin>
+         <Image url="@../icons/play.png"/>
+      </ImageView>
+      <ImageView fx:id="volumeImage" fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+         <HBox.margin>
+            <Insets bottom="2.0" right="5.0"/>
+         </HBox.margin>
+         <Image url="@../icons/volume_on.png"/>
+      </ImageView>
+      <Slider fx:id="volumeSlider" prefHeight="14.0" prefWidth="50.0">
+         <HBox.margin>
+            <Insets bottom="5.0" right="20.0"/>
+         </HBox.margin>
+      </Slider>
+      <Slider fx:id="timeSlider" prefHeight="14.0" prefWidth="350.0">
+         <HBox.margin>
+            <Insets bottom="5.0" right="20.0"/>
+         </HBox.margin>
+      </Slider>
+      <ImageView fx:id="fullScreenImage" fitHeight="30.0" fitWidth="200.0" onMouseClicked="#handleFullScreenAction"
+                 pickOnBounds="true" preserveRatio="true">
+         <Image url="@../icons/fullscreen.png"/>
+      </ImageView>
+   </HBox>
 </StackPane>

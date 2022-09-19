@@ -1,7 +1,8 @@
 package leeny.edu.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class MainController {
@@ -12,7 +13,7 @@ public class MainController {
 
     private ClientController clientController;
 
-    @FXML private GridPane mainGridPane;
+    @FXML private HBox mainComponent;
 
     @FXML
     private void initialize() {
@@ -23,24 +24,18 @@ public class MainController {
 
     public void hideComponents() {
         // TODO нужно скрыть чат, настройки
-//        mainGridPane.getChildren().stream()
-//                .filter(node -> !Objects.equals(node.getId(), "mediaPlayer"))
-//                .forEach(node -> {
-//                    System.out.println(node);
-//                    node.setVisible(false);
-//                });
-        ((Stage)mainGridPane.getScene().getWindow()).setFullScreen(true);
+        chatController.setVisible(false);
+        settingsController.setVisible(false);
+//        mediaPlayerController.resizeWindow();
+        ((Stage)mainComponent.getScene().getWindow()).setFullScreen(true);
     }
 
     public void seekComponents() {
         // TODO нужно раскрыть чат, настройки
-//        mainGridPane.getChildren().stream()
-//                .filter(node -> !Objects.equals(node.getId(), "mediaPlayer"))
-//                .forEach(node -> {
-//                    System.out.println(node);
-//                    node.setVisible(true);
-//                });
-        ((Stage)mainGridPane.getScene().getWindow()).setFullScreen(false);
+        chatController.setVisible(true);
+        settingsController.setVisible(true);
+//        mediaPlayerController.resizeWindow();
+        ((Stage)mainComponent.getScene().getWindow()).setFullScreen(false);
     }
 
     public MediaPlayerController getMediaPlayerController() {

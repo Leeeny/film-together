@@ -6,28 +6,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="leeny.edu.controllers.SettingsController">
-   <children>
-      <TextField fx:id="username" layoutX="20.0" layoutY="87.0" promptText="Username" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="87.0" />
-      <TextField fx:id="host" layoutX="20.0" layoutY="125.0" promptText="Host" AnchorPane.leftAnchor="20.0" />
-      <TextField fx:id="port" layoutX="20.0" layoutY="160.0" promptText="Port" AnchorPane.leftAnchor="20.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="43.0" prefHeight="36.0" prefWidth="161.0" text="Abobus">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font></Label>
-      <Button layoutX="276.0" layoutY="87.0" mnemonicParsing="false" text="конект" />
-      <Button layoutX="276.0" layoutY="125.0" mnemonicParsing="false" text="криэйт" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="466.0" layoutY="43.0" text="Status">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="261.0" layoutY="43.0" text="Action">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="459.0" layoutY="91.0" text="Статус коннекта" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="461.0" layoutY="129.0" text="Статус сервера" />
-   </children>
+<AnchorPane
+        prefHeight="200.0" prefWidth="600.0"
+        xmlns="http://javafx.com/javafx/18"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:id="mainComponent"
+        fx:controller="leeny.edu.controllers.SettingsController">
+   <TextField fx:id="username" layoutX="20.0" layoutY="87.0" promptText="Username" AnchorPane.leftAnchor="20.0"
+              AnchorPane.topAnchor="87.0"/>
+   <TextField fx:id="host" layoutX="20.0" layoutY="125.0" promptText="Host" AnchorPane.leftAnchor="20.0"/>
+   <TextField fx:id="port" layoutX="20.0" layoutY="160.0" promptText="Port" AnchorPane.leftAnchor="20.0"/>
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="43.0" prefHeight="36.0" prefWidth="161.0"
+          text="Abobus">
+      <font>
+         <Font name="System Bold" size="25.0"/>
+      </font>
+   </Label>
+   <Button layoutX="276.0" layoutY="87.0" mnemonicParsing="false" text="конект"/>
+   <Button layoutX="276.0" layoutY="125.0" mnemonicParsing="false" text="криэйт"/>
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="466.0" layoutY="43.0" text="Status">
+      <font>
+         <Font name="System Bold" size="25.0"/>
+      </font>
+   </Label>
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="261.0" layoutY="43.0" text="Action">
+      <font>
+         <Font name="System Bold" size="25.0"/>
+      </font>
+   </Label>
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="459.0" layoutY="91.0" text="Статус коннекта"/>
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="461.0" layoutY="129.0" text="Статус сервера"/>
 </AnchorPane>

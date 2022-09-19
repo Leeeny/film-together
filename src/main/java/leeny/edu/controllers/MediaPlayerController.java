@@ -2,12 +2,17 @@ package leeny.edu.controllers;
 
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
+import javafx.geometry.Bounds;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
@@ -25,8 +30,8 @@ public class MediaPlayerController {
 
     private MediaPlayer mediaPlayerComponent;
 
+    @FXML private StackPane mainComponent;
     @FXML private MediaView mediaView;
-    @FXML private StackPane mediaPlayer;
 
     @FXML private ImageView playbackImage;
     private boolean isPlayed;
@@ -65,15 +70,6 @@ public class MediaPlayerController {
             mediaPlayerComponent = new MediaPlayer(media);
             mediaView.setMediaPlayer(mediaPlayerComponent);
             playbackImage.setImage(ImageStatus.PAUSE.getImage());
-
-//            DoubleProperty width = mediaView.fitWidthProperty();
-//            DoubleProperty height = mediaView.fitHeightProperty();
-//            System.out.println("width: " + width);
-//            System.out.println("height: " + height);
-//
-//            width.bind(Bindings.selectDouble(mediaView.sceneProperty(), "width"));
-//            height.bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
-
 
             volumeSlider.valueProperty().setValue(mediaPlayerComponent.getVolume() * 100);
             initAfterOpenVideo();
@@ -138,15 +134,30 @@ public class MediaPlayerController {
         // Note: if you want to consider the mouse having moved for
         // other events (e.g. dragging), you can do
         // pane.addEventHandler(MouseEvent.ANY, e -> { ... }); here
-        mediaPlayer.setOnMouseMoved(e -> {
+        mainComponent.setOnMouseMoved(e -> {
             mouseMoving.set(true);
             pause.playFromStart();
             controlPanel.setVisible(true);
         });
     }
 
+    private void resizeMediaViewListener() {
+        InvalidationListener resizeMediaView = observable -> {
+            mediaView.setFitWidth(mainComponent.getWidth());
+            mediaView.setFitHeight(mainComponent.getHeight());
+
+            // After setting a big fit width and height, the layout bounds match the video size. Not sure why and this feels fragile.
+            Bounds actualVideoSize = mediaView.getLayoutBounds();
+            mediaView.setX((mediaView.getX() - actualVideoSize.getWidth()) / 2);
+            mediaView.setY((mediaView.getY() - actualVideoSize.getHeight()) / 2);
+        };
+        mainComponent.heightProperty().addListener(resizeMediaView);
+        mainComponent.widthProperty().addListener(resizeMediaView);
+    }
+
     private void initAfterOpenVideo() {
         detectMouseInactivity();
+        resizeMediaViewListener();
 
         volumeSlider.valueProperty().addListener(ov -> {
             if (volumeSlider.isPressed()) {
