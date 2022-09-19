@@ -20,12 +20,10 @@ public class Main extends Application {
     public void start(Stage stage) {
         stage.setTitle("Film together");
 
-        Scene scene = new Scene(rootNode, 1000, 750);
+        Scene scene = new Scene(rootNode);
         scene.setRoot(rootNode);
         stage.setScene(scene);
-
-        stage.setMinWidth(800);
-        stage.setMinHeight(600);
+        stage.setResizable(false);
 
         stage.show();
     }

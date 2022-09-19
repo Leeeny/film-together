@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.media.MediaView?>
-<StackPane xmlns="http://javafx.com/javafx"
-           xmlns:fx="http://javafx.com/fxml" prefHeight="150.0" prefWidth="200.0"
-           fx:id="mediaPlayer"
-           fx:controller="leeny.edu.controllers.MediaPlayerController">
-    <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" />
-    <HBox fx:id="controlPanel" alignment="BOTTOM_CENTER" prefHeight="46.0" prefWidth="600.0">
+
+<StackPane fx:id="mediaPlayer" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="leeny.edu.controllers.MediaPlayerController">
+    <MediaView fx:id="mediaView" fitHeight="400.0" fitWidth="600.0" nodeOrientation="INHERIT" StackPane.alignment="CENTER">
+      <viewport>
+         <Rectangle2D />
+      </viewport></MediaView>
+    <HBox fx:id="controlPanel" alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="600.0">
         <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleOpenVideoAction" pickOnBounds="true" preserveRatio="true">
             <HBox.margin>
                 <Insets right="5.0" />

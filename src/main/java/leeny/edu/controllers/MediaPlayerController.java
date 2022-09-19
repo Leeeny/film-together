@@ -2,9 +2,7 @@ package leeny.edu.controllers;
 
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Slider;
@@ -68,15 +66,17 @@ public class MediaPlayerController {
             mediaView.setMediaPlayer(mediaPlayerComponent);
             playbackImage.setImage(ImageStatus.PAUSE.getImage());
 
-            DoubleProperty width = mediaView.fitWidthProperty();
-            DoubleProperty height = mediaView.fitHeightProperty();
-            width.bind(Bindings.selectDouble(mediaView.sceneProperty(), "width"));
-            height.bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
+//            DoubleProperty width = mediaView.fitWidthProperty();
+//            DoubleProperty height = mediaView.fitHeightProperty();
+//            System.out.println("width: " + width);
+//            System.out.println("height: " + height);
+//
+//            width.bind(Bindings.selectDouble(mediaView.sceneProperty(), "width"));
+//            height.bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
 
 
             volumeSlider.valueProperty().setValue(mediaPlayerComponent.getVolume() * 100);
             initAfterOpenVideo();
-//                ((Stage)mediaView.getScene().getWindow()).setFullScreen(true);
 
             mediaPlayerComponent.play();
             isPlayed = true;
@@ -97,30 +97,29 @@ public class MediaPlayerController {
 
                 // If the player is at the end of video
                 mediaPlayerComponent.seek(mediaPlayerComponent.getStartTime()); // Restart the video
-                mediaPlayerComponent.play();
-                isPlayed = true;
+                playVideo();
             }
             else {
                 // Pausing the player
-                mediaPlayerComponent.pause();
-                isPlayed = false;
-
-                playbackImage.setImage(ImageStatus.PLAY.getImage());
+                stopVideo();
             }
         } // If the video is stopped, halted or paused
         if (status == MediaPlayer.Status.HALTED || status == MediaPlayer.Status.STOPPED || status == MediaPlayer.Status.PAUSED) {
-            mediaPlayerComponent.play(); // Start the video
-            playbackImage.setImage(ImageStatus.PAUSE.getImage());
-            isPlayed = true;
+            playVideo();
         }
     }
 
     @FXML
     private void handleFullScreenAction(MouseEvent event) {
         if (isFullScreen) {
-            mainController.testSeekComponents();
+            mainController.seekComponents();
         } else {
-            mainController.testHideComponents();
+            mainController.hideComponents();
+//            DoubleProperty width = mediaView.fitWidthProperty();
+//            DoubleProperty height = mediaView.fitHeightProperty();
+//
+//            width.bind(Bindings.selectDouble(mediaView.sceneProperty(), "width"));
+//            height.bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
         }
         isFullScreen = !isFullScreen;
     }
@@ -169,7 +168,7 @@ public class MediaPlayerController {
         timeSlider.valueProperty().addListener(ov -> {
             if (timeSlider.isPressed()) { // It would set the time as specified by user by pressing
                 mediaPlayerComponent.pause();
-                mediaPlayerComponent.seek(mediaPlayerComponent.getMedia().getDuration().multiply(timeSlider.getValue() / 100));
+                rewindVideo(timeSlider.getValue() / 100);
             }
         });
 
@@ -182,7 +181,19 @@ public class MediaPlayerController {
         });
     }
 
-    public void test() {
-        System.out.println("ахуеть");
+    public void stopVideo() {
+        mediaPlayerComponent.pause();
+        playbackImage.setImage(ImageStatus.PLAY.getImage());
+        isPlayed = false;
+    }
+
+    public void playVideo() {
+        mediaPlayerComponent.play(); // Start the video
+        playbackImage.setImage(ImageStatus.PAUSE.getImage());
+        isPlayed = true;
+    }
+
+    public void rewindVideo(double time) {
+        mediaPlayerComponent.seek(mediaPlayerComponent.getMedia().getDuration().multiply(time));
     }
 }
