@@ -47,12 +47,12 @@ public class Client {
                 try {
                     message = in.readLine();
                     //!!
-                    ResponseJSON response = Parser.getObjectFromJson(message);
+                    ResponseJSON response; /*= Parser.getObjectFromJson(message);*/
                     while (message != null) {
                         message = in.readLine();
+                        System.out.println(message);
                         response = Parser.getObjectFromJson(message);
                         parseResponse(response);
-                        System.out.println(message);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

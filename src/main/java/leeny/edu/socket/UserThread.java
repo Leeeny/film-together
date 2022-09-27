@@ -35,13 +35,13 @@ public class UserThread extends Thread {
                 msg = br.readLine();
                 serverMsg = "@" + username + "> " + msg;
                 System.out.println(serverMsg);
-                server.broadcast(serverMsg, this);
+                server.broadcast(msg, this);
             } while (!msg.equals("quit"));
 
             server.removeUser(username, this);
             socket.close();
             serverMsg = username + " has qiutted the chat";
-            server.broadcast(serverMsg, this);
+            server.broadcast(msg, this);
         } catch (IOException e) {
             System.out.println("Exception in run method in UserThread: " + e);
 
