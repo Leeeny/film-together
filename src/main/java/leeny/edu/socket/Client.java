@@ -1,5 +1,9 @@
 package leeny.edu.socket;
 
+import leeny.edu.controllers.MainController;
+import leeny.edu.json.Parser;
+import leeny.edu.json.ResponseJSON;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,19 +14,20 @@ import java.util.Scanner;
 import java.util.concurrent.Exchanger;
 
 public class Client {
-    private Exchanger<String> exchanger;
 
+    MainController mainController;
     private String hostname;
     private int port;
     private String userName;
-    BufferedReader in;
-    PrintWriter out;
-    Scanner sc = new Scanner(System.in);
+    private BufferedReader in;
+    private PrintWriter out;
+    private String message;
 
-    public Client(String hostname, int port, Exchanger<String> exchanger, Exchanger<String> toReceive) {
+    public Client(MainController mainController, String hostname, int port, String username) {
+        this.mainController = mainController;
         this.hostname = hostname;
         this.port = port;
-        this.exchanger = exchanger;
+        this.userName = username;
     }
 
     public void send(String msg) {
@@ -38,28 +43,18 @@ public class Client {
             out = new PrintWriter(socket.getOutputStream());
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            System.out.println("Enter username");
-            String username = sc.nextLine();
-            send(username);
-
-            Thread sender = new Thread(() -> {
-                while (true) {
-                    String msg = sc.nextLine();
-                    send(msg);
-                }
-            });
-            sender.start();
-
             Thread receiver = new Thread(() -> {
                 try {
-                    String msg = in.readLine();
-                   // responseQueue.add(Parser.getObjectFromJson(msg));
-                    while (msg!=null) {
-                        msg = in.readLine();
-                        exchanger.exchange(msg);
-                        System.out.println(msg);
+                    message = in.readLine();
+                    //!!
+                    ResponseJSON response = Parser.getObjectFromJson(message);
+                    while (message != null) {
+                        message = in.readLine();
+                        response = Parser.getObjectFromJson(message);
+                        parseResponse(response);
+                        System.out.println(message);
                     }
-                } catch (IOException | InterruptedException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
                 System.out.println("Connection is closed");
@@ -87,6 +82,36 @@ public class Client {
         return this.userName;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    private void parseResponse(ResponseJSON response) {
+        switch (response.getClientStatus()) {
+            case PLAY -> {
+                mainController.getMediaPlayerController().playVideo();
+            }
+            case PAUSE -> {
+                mainController.getMediaPlayerController().stopVideo();
+            }
+            case REWIND -> {
+
+            }
+            case UPLOAD -> {
+
+            }
+            case MESSAGE -> {
+
+            }
+            case CONNECTED -> {
+
+            }
+        }
+    }
 
     public static void main(String[] args) {
        /* String hostname = "26.70.165.194";

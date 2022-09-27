@@ -13,9 +13,9 @@ public class ResponseJSON {
     private ClientStatus clientStatus;
     private boolean isConnected;
     private boolean isUploaded;
-    private long videoDuration;
+    private double videoDuration;
     private boolean isPlayed;
     private boolean isRewind;
-    private long rewindTo;
+    private double rewindTo;
     private String chatMessage;
 }

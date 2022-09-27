@@ -1,9 +1,11 @@
 package leeny.edu.socket;
 
+import leeny.edu.json.Parser;
+
 import java.io.*;
 import java.net.Socket;
 
-public class UserThread extends Thread{
+public class UserThread extends Thread {
     private Socket socket;
     private Server server;
     private PrintWriter writer;
@@ -20,14 +22,15 @@ public class UserThread extends Thread{
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
             OutputStream out = socket.getOutputStream();
             writer = new PrintWriter(out, true);
-            String username = br.readLine();
+
+            String msg = br.readLine();
+            String username = Parser.getObjectFromJson(msg).getUsername();
             server.addUserName(username);
 
             String serverMsg = "User with username \"" + username + "\" connected";
             System.out.println(serverMsg);
             server.broadcast(serverMsg, this);
 
-            String msg;
             do {
                 msg = br.readLine();
                 serverMsg = "@" + username + "> " + msg;

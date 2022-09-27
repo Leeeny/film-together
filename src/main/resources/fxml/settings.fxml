@@ -22,7 +22,7 @@
          <Font name="System Bold" size="25.0"/>
       </font>
    </Label>
-   <Button layoutX="276.0" layoutY="87.0" mnemonicParsing="false" text="конект"/>
+   <Button layoutX="276.0" layoutY="87.0" mnemonicParsing="false" text="конект" onMouseClicked="#handleConnect"/>
    <Button layoutX="276.0" layoutY="125.0" mnemonicParsing="false" text="криэйт"/>
    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="466.0" layoutY="43.0" text="Status">
       <font>

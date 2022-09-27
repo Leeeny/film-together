@@ -7,13 +7,17 @@ import javafx.stage.Stage;
 
 public class MainController {
 
-    @FXML private MediaPlayerController mediaPlayerController;
-    @FXML private ChatController chatController;
-    @FXML private SettingsController settingsController;
+    @FXML
+    private MediaPlayerController mediaPlayerController;
+    @FXML
+    private ChatController chatController;
+    @FXML
+    private SettingsController settingsController;
 
     private ClientController clientController;
 
-    @FXML private HBox mainComponent;
+    @FXML
+    private HBox mainComponent;
 
     @FXML
     private void initialize() {
@@ -27,7 +31,7 @@ public class MainController {
         chatController.setVisible(false);
         settingsController.setVisible(false);
 //        mediaPlayerController.resizeWindow();
-        ((Stage)mainComponent.getScene().getWindow()).setFullScreen(true);
+        ((Stage) mainComponent.getScene().getWindow()).setFullScreen(true);
     }
 
     public void seekComponents() {
@@ -35,14 +39,14 @@ public class MainController {
         chatController.setVisible(true);
         settingsController.setVisible(true);
 //        mediaPlayerController.resizeWindow();
-        ((Stage)mainComponent.getScene().getWindow()).setFullScreen(false);
+        ((Stage) mainComponent.getScene().getWindow()).setFullScreen(false);
     }
 
     public MediaPlayerController getMediaPlayerController() {
         return mediaPlayerController;
     }
 
-        public void stopVideo() {
+    public void stopVideo() {
         mediaPlayerController.stopVideo();
     }
 
@@ -60,5 +64,13 @@ public class MainController {
 
     public void addUser(String username) {
 
+    }
+
+    public ClientController getClientController() {
+        return clientController;
+    }
+
+    public SettingsController getSettingsController() {
+        return settingsController;
     }
 }

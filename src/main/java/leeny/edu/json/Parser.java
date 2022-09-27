@@ -3,10 +3,9 @@ package leeny.edu.json;
 import com.google.gson.Gson;
 
 public final class Parser {
-    private static Gson gson;
+    private static Gson gson = new Gson();
 
     private Parser() {
-        gson = new Gson();
     }
 
     public static String getJsonFromObject(ResponseJSON response) {
